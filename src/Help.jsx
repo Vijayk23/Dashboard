@@ -1,11 +1,14 @@
 import Sidebar from "./Sidebar.jsx";
 
-function Income() {
+function Help() {
   return (
     <>
-      <div>call 7010993660</div>
+      <div className="nextpages">
+        <Sidebar />
+        <div className="doughnut-per">Coming Soon...</div>
+      </div>
     </>
   );
 }
 
-export default Income;
+export default Help;

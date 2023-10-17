@@ -9,7 +9,7 @@ import {
 } from "chart.js";
 
 import { Bar } from "react-chartjs-2";
-import Income from "./Income";
+import DoughnutChart from "./DoughnutChart.jsx";
 
 ChartJS.register(
   CategoryScale,
@@ -94,7 +94,7 @@ function Chartdesign() {
           <Bar options={options} data={data} />
         </div>
         <div>
-          <Income />
+          <DoughnutChart />
         </div>
       </div>
     </>

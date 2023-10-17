@@ -26,7 +26,7 @@ function Sidebar() {
     {
       img: "./images/dashboard-promote.png",
       title: "Promote",
-      link: "/Chart",
+      link: "/Promote",
     },
     {
       img: "./images/dashboard-help.png",

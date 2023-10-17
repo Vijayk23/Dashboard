@@ -1,11 +1,14 @@
 import Sidebar from "./Sidebar.jsx";
 
-function Income() {
+function Promote() {
   return (
     <>
-      <div>ramya Worst</div>
+      <div className="nextpages">
+        <Sidebar />
+        <div className="doughnut-per">Coming Soon...</div>
+      </div>
     </>
   );
 }
 
-export default Income;
+export default Promote;

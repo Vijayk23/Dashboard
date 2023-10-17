@@ -2,55 +2,85 @@ import {
   Chart as ChartJS,
   CategoryScale,
   LinearScale,
-  BarElement,
+  ArcElement,
   Title,
   Tooltip,
   Legend,
 } from "chart.js";
+
 import { Doughnut } from "react-chartjs-2";
 
 ChartJS.register(
   CategoryScale,
   LinearScale,
-  BarElement,
+  ArcElement,
   Title,
   Tooltip,
   Legend
 );
 
-function DoughnutChart() {
-  const data = {
-    labels: ["Red", "Blue", "Gray"],
-    datasets: [
-      {
-        data: [20, 40, 40], // Specify the percentages for each section
-        backgroundColor: ["red", "blue", "lightgray"], // Colors for each section
-      },
-    ],
-  };
+const sliceThicknessPlugin = {
+  id: "sliceThickness",
+  beforeDraw(chart, args, options) {
+    const sliceThicknessPixelout = options.sliceThickness || [270, 295, 330];
+    sliceThicknessPixelout.forEach((thickness, index) => {
+      chart.getDatasetMeta(0).data[index].outerRadius =
+        (chart.chartArea.width / thickness) * 100;
+    });
+    const sliceThicknessPixel = options.sliceThickness || [450, 430, 400];
+    sliceThicknessPixel.forEach((thickness, index) => {
+      chart.getDatasetMeta(0).data[index].innerRadius =
+        (chart.chartArea.width / thickness) * 100;
+    });
+  },
+};
 
+function Income() {
   const options = {
+    responsive: true,
     plugins: {
-      title: {
-        display: true,
-        text: "65% New Customer", // Center text
-        font: {
-          size: 16,
-          weight: "bold",
-        },
-      },
       legend: {
         display: false,
       },
     },
-    cutout: "85%", // Adjust the cutout size to create a hole in the center
+  };
+
+  const labels = ["Segment 1", "Segment 2", "Segment 3"];
+
+  const data = {
+    labels,
+    datasets: [
+      {
+        data: [20, 60, 40],
+        backgroundColor: ["#F43395", "#633BEB", "#F1EFFB"],
+        borderWidth: 0,
+        offset: 3,
+      },
+    ],
   };
 
   return (
-    <div className="doughnut-chart">
-      <Doughnut data={data} options={options} />
-    </div>
+    <>
+      <div className="doughnut">
+        <div className="chart-title">
+          <div>
+            <p className="title">Customers</p>
+            <p>Customers that buy products</p>
+          </div>
+        </div>
+        <Doughnut
+          options={options}
+          data={data}
+          plugins={[sliceThicknessPlugin]}
+          className="doubar"
+        />
+        <div className="doughnut-title">
+          <h2 className="doughnut-per">65%</h2>
+          <p className="doughnut-cust">Total New Customers</p>
+        </div>
+      </div>
+    </>
   );
 }
 
-export default DoughnutChart;
+export default Income;

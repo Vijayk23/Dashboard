@@ -493,3 +493,10 @@
         width: 290px;     
     } 
 } 
+
+.nextpages{
+    display: flex;
+    align-items: center;
+   gap: 60px
+
+}
